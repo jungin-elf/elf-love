@@ -1,29 +1,14 @@
-// src/App.jsx
-import React, { useEffect, useState } from "react";
-import LoginForm from "./components/LoginForm";
+import React from "react";
+import Header from "./components/Header";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((currentUser) => {
-      setUser(currentUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
   return (
     <div>
-      <h1>⛳ 엘프사랑 골프동호회</h1>
-      {user ? (
-        <div>
-          <p>환영합니다, {user.email} 님!</p>
-          <button onClick={() => firebase.auth().signOut()}>로그아웃</button>
-        </div>
-      ) : (
-        <LoginForm />
-      )}
+      <Header />
+      <main style={{ padding: "20px" }}>
+        <h2>메인 화면</h2>
+        <p>여기에 대회별 랭킹, 포인트 랭킹, 차기 대회 일정 등이 표시될 예정입니다.</p>
+      </main>
     </div>
   );
 }
