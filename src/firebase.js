@@ -5,12 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 // 파이어베이스 콘솔에서 복사한 설정을 여기에 붙여넣으세요
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_AUTHDOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyB4H8JPogAUAQOoMe6qNIegrvQxQtgwJUw",
+  authDomain: "elf-love-kr.firebaseapp.com",
+  projectId: "elf-love-kr",
+  storageBucket: "elf-love-kr.firebasestorage.app",
+  messagingSenderId: "309196788026",
+  appId: "1:309196788026:web:5de611ccc63128adf78003"
 };
 
 // Firebase 초기화
