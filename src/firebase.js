@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // 파이어베이스 콘솔에서 복사한 설정을 여기에 붙여넣으세요
 const firebaseConfig = {
@@ -16,10 +17,7 @@ const firebaseConfig = {
 // Firebase 초기화
 const app = initializeApp(firebaseConfig);
 
-// 인증 객체
-const auth = getAuth(app);
-
-// Firestore DB 객체
-const db = getFirestore(app);
-
-export { auth, db };
+// 필요한 기능 export
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
