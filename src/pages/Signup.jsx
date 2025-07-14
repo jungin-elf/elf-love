@@ -1,41 +1,31 @@
-// src/pages/Signup.jsx
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    const auth = getAuth();
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      setMessage("회원가입이 완료되었습니다. 관리자의 승인을 기다려주세요.");
+      console.log("가입 성공:", userCredential.user);
 
-      // Firestore에 사용자 정보 저장
-      await setDoc(doc(db, "members", user.uid), {
-        email,
-        nickname,
-        role: "pending", // 가입 승인 대기 상태
-        createdAt: new Date()
-      });
-
-      alert("회원가입 완료! 승인 후 로그인 가능");
-      navigate("/login");
+      // 추가 사용자 정보 저장은 Firestore 연결 후 구현 예정
     } catch (error) {
-      alert("회원가입 실패: " + error.message);
+      setMessage(`오류 발생: ${error.message}`);
     }
   };
 
   return (
-    <div style={containerStyle}>
+    <div>
       <h2>회원가입</h2>
-      <form onSubmit={handleSignup} style={formStyle}>
+      <form onSubmit={handleSignup} style={{ display: "flex", flexDirection: "column", maxWidth: "300px" }}>
         <input
           type="text"
           placeholder="닉네임"
@@ -45,7 +35,7 @@ const Signup = () => {
         />
         <input
           type="email"
-          placeholder="이메일"
+          placeholder="이메일 주소"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -57,23 +47,11 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">가입하기</button>
+        <button type="submit">회원가입</button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
-};
-
-const containerStyle = {
-  maxWidth: "400px",
-  margin: "0 auto",
-  padding: "20px",
-  textAlign: "center",
-};
-
-const formStyle = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "10px",
 };
 
 export default Signup;
