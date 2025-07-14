@@ -1,20 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import Signup from "./pages/Signup"; // 회원가입 페이지 import
+import Login from "./pages/Login";  // 로그인 컴포넌트 위치에 맞게 경로 조정
+import Home from "./pages/Home";    // 메인 페이지 컴포넌트도 만들어야 함
 
 function App() {
   return (
     <Router>
-      <Header />
-      <main style={{ padding: "20px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />  {/* 메인 컴포넌트 */}
-          <Route path="/register" element={<Register />} /> {/* 회원가입 */}
-          {/* 다른 라우트도 추가 예정 */}
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
 }
