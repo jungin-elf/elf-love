@@ -10,8 +10,9 @@ function App() {
       <Header />
       <main style={{ padding: "20px" }}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} /> {/* 회원가입 라우트 추가 */}
+          <Route path="/" element={<Home />} />  {/* 메인 컴포넌트 */}
+          <Route path="/register" element={<Register />} /> {/* 회원가입 */}
+          {/* 다른 라우트도 추가 예정 */}
         </Routes>
       </main>
     </Router>
